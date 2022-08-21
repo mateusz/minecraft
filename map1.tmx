@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="3" nextobjectid="3">
+ <tileset firstgid="1" source="rooms.tsx"/>
+ <objectgroup id="2" name="dungeon">
+  <object id="1" gid="1" x="54" y="54" width="9" height="9" rotation="270"/>
+ </objectgroup>
+</map>
