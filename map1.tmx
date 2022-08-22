@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="3" nextobjectid="3">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="3" nextobjectid="47">
  <tileset firstgid="1" source="rooms.tsx"/>
  <objectgroup id="2" name="dungeon">
-  <object id="1" gid="1" x="54" y="54" width="9" height="9" rotation="270"/>
+  <object id="1" gid="1" x="9" y="9" width="9" height="9"/>
+  <object id="6" gid="3" x="45" y="0" width="9" height="9" rotation="180"/>
+  <object id="7" gid="22" x="36" y="9" width="9" height="9" rotation="90"/>
+  <object id="11" gid="22" x="9" y="9" width="9" height="9" rotation="90"/>
+  <object id="12" gid="21" x="18" y="9" width="9" height="9" rotation="90"/>
+  <object id="18" gid="21" x="0" y="27" width="9" height="9"/>
+  <object id="19" gid="21" x="0" y="36" width="9" height="9"/>
+  <object id="20" gid="20" x="0" y="36" width="9" height="9" rotation="90"/>
+  <object id="21" gid="13" x="9" y="45" width="9" height="9"/>
+  <object id="22" gid="23" x="27" y="27" width="9" height="9"/>
+  <object id="23" gid="22" x="36" y="18" width="9" height="9" rotation="270"/>
+  <object id="24" gid="18" x="18" y="18" width="9" height="9" rotation="90"/>
+  <object id="26" gid="16" x="36" y="27" width="9" height="9"/>
+  <object id="29" gid="20" x="27" y="36" width="9" height="9" rotation="90"/>
+  <object id="31" gid="20" x="36" y="45" width="9" height="9"/>
+  <object id="32" gid="20" x="45" y="27" width="9" height="9" rotation="180"/>
+  <object id="33" gid="11" x="45" y="27" width="9" height="9" rotation="90"/>
+  <object id="34" gid="12" x="54" y="18" width="9" height="9"/>
+  <object id="35" gid="21" x="45" y="9" width="9" height="9" rotation="90"/>
+  <object id="36" gid="15" x="0" y="0" width="9" height="9" rotation="90"/>
+  <object id="37" gid="22" x="9" y="9" width="9" height="9" rotation="180"/>
+  <object id="38" gid="22" x="27" y="36" width="9" height="9"/>
+  <object id="39" gid="20" x="27" y="27" width="9" height="9" rotation="180"/>
+  <object id="41" gid="21" x="18" y="45" width="9" height="9"/>
+  <object id="43" gid="21" x="18" y="63" width="9" height="9"/>
+  <object id="44" gid="9" x="18" y="72" width="9" height="9"/>
+  <object id="46" gid="19" x="27" y="45" width="9" height="9" rotation="180"/>
  </objectgroup>
 </map>
