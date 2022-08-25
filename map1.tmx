@@ -2,7 +2,7 @@
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="4" nextobjectid="95">
  <tileset firstgid="1" source="rooms.tsx"/>
  <tileset firstgid="24" source="entities.tsx"/>
- <objectgroup id="2" name="dungeon" locked="1" opacity="0.15">
+ <objectgroup id="2" name="dungeon" locked="1" opacity="0.61">
   <object id="1" gid="1" x="9" y="9" width="9" height="9"/>
   <object id="6" gid="3" x="45" y="0" width="9" height="9" rotation="180"/>
   <object id="7" gid="22" x="36" y="9" width="9" height="9" rotation="90"/>
