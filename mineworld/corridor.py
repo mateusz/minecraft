@@ -2,14 +2,18 @@ import mcpi.block as block
 import numpy as np
 from . import util
 import random
+import time
 
 
-def draw_corridor(mc, cx, cy, cz, rot=0, holes=[]):
+def draw_corridor(mc, cx, cy, cz, rot=0, holes=[], purge=True):
     cx = float(cx)
     cy = float(cy)
     cz = float(cz)
-
     side = 9
+
+    if purge:
+        mc.setBlocks(cx, cy, cz, cx+side-1, cy+side-1, cz+side-1, block.STONE)
+
     is_hole = {
         'x0': lambda x, y, z: x == 0 and y != 0 and y != side-1 and z != 0 and z != side-1,
         'x1': lambda x, y, z: x == side-1 and y != 0 and y != side-1 and z != 0 and z != side-1,

@@ -1,4 +1,5 @@
 import mcpi.block as block
+import time
 
 NORTH = 'z0'
 EAST = 'x1'
@@ -75,3 +76,18 @@ def to_torch_dir_rot(dir, deg):
         return progression[progression[dir]]
     if deg == 270:
         return progression[progression[progression[dir]]]
+
+
+def lava_purge(mc, px, py, pz, x, y, z):
+    # Lava purge! Deletes all entities
+    mc.setBlocks(px, py, pz, px+x-1, py+y -
+                 1, pz+z-1, block.STONE)
+    # mc.setBlocks(px, py, pz, px+x-1, py+y -
+    #             1, pz+z-1, block.LAVA_STATIONARY)
+    # time.sleep(0.5)
+    # mc.setBlocks(px, py, pz, px+x-1, py+y -
+    #             1, pz+z-1, block.STONE)
+
+
+def lava_purge_tile(mc, x, y, z):
+    lava_purge(mc, x, y, z, TILE_SIZE, TILE_SIZE, TILE_SIZE)

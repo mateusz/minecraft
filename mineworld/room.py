@@ -5,6 +5,7 @@ from PIL import Image
 import random
 import mcpi.minecraft as minecraft
 import mcpi.block as block
+import time
 
 
 def load_room(path):
@@ -29,10 +30,14 @@ class Room:
         self.version = version
         self.blocks = blocks
 
-    def draw(self, mc, px, py, pz, rot=0):
+    def draw(self, mc, px, py, pz, rot=0, purge=True):
         px = float(px)
         py = float(py)
         pz = float(pz)
+
+        if purge:
+            mc.setBlocks(px, py, pz, px+self.side-1, py +
+                         self.side-1, pz+self.side-1, block.STONE)
 
         i = 0
         for y in np.arange(0, self.side, 1):
@@ -80,7 +85,7 @@ class Room:
         pixels = []
         for z in np.arange(0, self.side, 1):
             for x in np.arange(0, self.side, 1):
-                #px = self.get_block_at(*to_rot(0,0,0,x,y,z,180)).getRGBA()
+                # px = self.get_block_at(*to_rot(0,0,0,x,y,z,180)).getRGBA()
                 px = self.get_block_at(x, y, z).getRGBA()
                 pixels.append([px[0], px[1], px[2]])
 
