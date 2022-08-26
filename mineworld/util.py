@@ -12,6 +12,21 @@ TORCH_DIR_Z1 = 3
 TORCH_DIR_Z0 = 4
 TORCH_DIR_UP = 5
 
+STAIR_DIR_Z0 = 2
+STAIR_DIR_Z1 = 3
+STAIR_DIR_X1 = 1
+STAIR_DIR_X0 = 0
+
+STAIR_FLIP_DIR_Z0 = 6
+STAIR_FLIP_DIR_Z1 = 7
+STAIR_FLIP_DIR_X1 = 5
+STAIR_FLIP_DIR_X0 = 4
+
+SIGN_HUNG_Z1 = 2
+SIGN_HUNG_Z0 = 3
+SIGN_HUNG_X1 = 4
+SIGN_HUNG_X0 = 5
+
 TILE_SIZE = 9
 
 ATTACHABLES = [
@@ -27,13 +42,31 @@ ATTACHABLES = [
     block.DOOR_SPRUCE[0],
     block.DOOR_WOOD[0],
     (block.SIGN())[0],
+    block.SIGN_HUNG[0],
     block.CARPET[0],
 ]
 
-FACING = [
+TORCHES = [
     block.TORCH[0],
     block.REDSTONE_TORCH_INACTIVE[0],
     block.REDSTONE_TORCH_ACTIVE[0],
+]
+
+STAIRS = [
+    block.STAIRS_BIRCH[0],
+    block.STAIRS_COBBLESTONE[0],
+    block.STAIRS_JUNGLE[0],
+    block.STAIRS_SPRUCE[0],
+    block.STAIRS_WOOD[0],
+    block.PURPUR_STAIRS[0],
+    block.BRICK_STAIRS[0],
+    block.STONE_BRICK_STAIRS[0],
+    block.NETHER_BRICK_STAIRS[0],
+    block.SANDSTONE_STAIRS[0],
+    block.QUARTZ_STAIRS[0],
+    block.ACACIA_STAIRS[0],
+    block.DARK_OAK_STAIRS[0],
+    block.RED_SANDSTONE_STAIRS[0],
 ]
 
 # TODO implement rotation
@@ -78,16 +111,51 @@ def to_torch_dir_rot(dir, deg):
         return progression[progression[progression[dir]]]
 
 
-def lava_purge(mc, px, py, pz, x, y, z):
-    # Lava purge! Deletes all entities
-    mc.setBlocks(px, py, pz, px+x-1, py+y -
-                 1, pz+z-1, block.STONE)
-    # mc.setBlocks(px, py, pz, px+x-1, py+y -
-    #             1, pz+z-1, block.LAVA_STATIONARY)
-    # time.sleep(0.5)
-    # mc.setBlocks(px, py, pz, px+x-1, py+y -
-    #             1, pz+z-1, block.STONE)
+def to_stair_dir_rot(dir, deg):
+    progression = {
+        STAIR_DIR_X1: STAIR_DIR_Z1,
+        STAIR_DIR_Z1: STAIR_DIR_X0,
+        STAIR_DIR_X0: STAIR_DIR_Z0,
+        STAIR_DIR_Z0: STAIR_DIR_X1,
+
+        STAIR_FLIP_DIR_X1: STAIR_FLIP_DIR_Z1,
+        STAIR_FLIP_DIR_Z1: STAIR_FLIP_DIR_X0,
+        STAIR_FLIP_DIR_X0: STAIR_FLIP_DIR_Z0,
+        STAIR_FLIP_DIR_Z0: STAIR_FLIP_DIR_X1,
+    }
+    if deg == 0:
+        return dir
+    if deg == 90:
+        return progression[dir]
+    if deg == 180:
+        return progression[progression[dir]]
+    if deg == 270:
+        return progression[progression[progression[dir]]]
 
 
-def lava_purge_tile(mc, x, y, z):
-    lava_purge(mc, x, y, z, TILE_SIZE, TILE_SIZE, TILE_SIZE)
+def to_sign_dir_rot(dir, deg):
+    if deg == 0:
+        return dir
+    if deg == 90:
+        return (dir + 4) % 16
+    if deg == 180:
+        return (dir + 8) % 16
+    if deg == 270:
+        return (dir + 12) % 16
+
+
+def to_sign_hung_dir_rot(dir, deg):
+    progression = {
+        SIGN_HUNG_X1: SIGN_HUNG_Z1,
+        SIGN_HUNG_Z1: SIGN_HUNG_X0,
+        SIGN_HUNG_X0: SIGN_HUNG_Z0,
+        SIGN_HUNG_Z0: SIGN_HUNG_X1,
+    }
+    if deg == 0:
+        return dir
+    if deg == 90:
+        return progression[dir]
+    if deg == 180:
+        return progression[progression[dir]]
+    if deg == 270:
+        return progression[progression[progression[dir]]]

@@ -44,17 +44,35 @@ class Room:
             for x in np.arange(0, self.side, 1):
                 for z in np.arange(0, self.side, 1):
                     b = self.blocks[i]
-                    if b[0] not in util.ATTACHABLES:
+                    if b[0] in util.STAIRS:
+                        br = block.Block(
+                            b[0], util.to_stair_dir_rot(b[1], rot))
+                        mc.setBlockWithNBT(
+                            *util.to_rot(px, py, pz, x, y, z, rot), br)
+                    elif b[0] not in util.ATTACHABLES:
                         mc.setBlockWithNBT(
                             *util.to_rot(px, py, pz, x, y, z, rot), b)
                     i += 1
+
+        # TODO skulls
+        # mc.setBlockWithNBT(0, 233, 0, block.Block(144, 1, '{Rot:2b,id:"minecraft:skull",SkullType:7b}'))
 
         i = 0
         for y in np.arange(0, self.side, 1):
             for x in np.arange(0, self.side, 1):
                 for z in np.arange(0, self.side, 1):
                     b = self.blocks[i]
-                    if b[0] in util.FACING:
+                    if b[0] == (block.SIGN())[0]:
+                        br = block.Block(
+                            b[0], util.to_sign_dir_rot(b[1], rot), b[2])
+                        mc.setBlockWithNBT(
+                            *util.to_rot(px, py, pz, x, y, z, rot), br)
+                    elif b[0] == block.SIGN_HUNG[0]:
+                        br = block.Block(
+                            b[0], util.to_sign_hung_dir_rot(b[1], rot), b[2])
+                        mc.setBlockWithNBT(
+                            *util.to_rot(px, py, pz, x, y, z, rot), br)
+                    elif b[0] in util.TORCHES:
                         br = block.Block(
                             b[0], util.to_torch_dir_rot(b[1], rot), b[2])
                         mc.setBlockWithNBT(
