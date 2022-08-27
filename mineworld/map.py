@@ -29,7 +29,7 @@ def draw_map(mc, image='cave_system.png'):
     for z in np.arange(0, im.size[1]):
         for x in np.arange(0, im.size[0]):
             p = pix[x, z]
-            if abs(p[0]-p[1]) <= 2 and abs(p[1]-p[2]) <= 2 and p[0] >= base_gray-2:
+            if abs(p[0]-p[1]) <= 4 and abs(p[1]-p[2]) <= 4 and p[0] >= base_gray-2:
                 h = int(hmax * (float(p[0]-base_gray)/base_gray))
                 if h < 1:
                     h = 1

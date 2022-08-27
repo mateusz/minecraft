@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="5" nextobjectid="131">
+ <tileset firstgid="1" source="rooms.tsx"/>
+ <tileset firstgid="47" source="entities.tsx"/>
+ <imagelayer id="4" name="Image Layer 1" opacity="0.33">
+  <image source="cave_system2.png" width="128" height="128"/>
+ </imagelayer>
+ <objectgroup id="2" name="dungeon" opacity="0.61">
+  <object id="107" gid="38" x="39" y="10" width="9" height="9" rotation="180"/>
+  <object id="128" gid="44" x="65" y="42" width="9" height="9" rotation="90"/>
+  <object id="129" gid="44" x="74" y="42" width="9" height="9" rotation="90"/>
+  <object id="130" gid="41" x="92" y="51" width="9" height="9" rotation="270"/>
+ </objectgroup>
+ <objectgroup id="3" name="mobs">
+  <object id="100" gid="56" x="33" y="15" width="1" height="1"/>
+  <object id="108" gid="51" x="34" y="25" width="1" height="1"/>
+  <object id="109" gid="51" x="37" y="28" width="1" height="1"/>
+  <object id="110" gid="51" x="36" y="24" width="1" height="1"/>
+  <object id="111" gid="51" x="31" y="25" width="1" height="1"/>
+  <object id="112" gid="51" x="32" y="28" width="1" height="1"/>
+  <object id="113" gid="51" x="43" y="43" width="1" height="1"/>
+  <object id="114" gid="51" x="43" y="47" width="1" height="1"/>
+  <object id="115" gid="51" x="46" y="46" width="1" height="1"/>
+  <object id="116" gid="52" x="59" y="26" width="1" height="1"/>
+  <object id="117" gid="52" x="53" y="27" width="1" height="1"/>
+  <object id="118" gid="52" x="61" y="31" width="1" height="1"/>
+  <object id="119" gid="55" x="35" y="73" width="1" height="1"/>
+  <object id="120" gid="55" x="33" y="78" width="1" height="1"/>
+  <object id="121" gid="55" x="40" y="78" width="1" height="1"/>
+  <object id="122" gid="55" x="42" y="81" width="1" height="1"/>
+  <object id="123" gid="55" x="46" y="79" width="1" height="1"/>
+  <object id="124" gid="55" x="36" y="76" width="1" height="1"/>
+  <object id="125" gid="53" x="32" y="52" width="1" height="1"/>
+  <object id="126" gid="53" x="55" y="56" width="1" height="1"/>
+  <object id="127" gid="53" x="58" y="41" width="1" height="1"/>
+ </objectgroup>
+</map>

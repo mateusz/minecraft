@@ -15,10 +15,12 @@ parser.add_argument('--roomdir', default="rooms",
                     help='Specify directory containing pickled rooms')
 parser.add_argument('--server', default='localhost',
                     help='Minecraft running RaspberryJamMod')
-parser.add_argument('--map', default='map1.tmx',
+parser.add_argument('--tiles', default='map1.tmx',
                     help='Tiled map using room files specified by --roomdir')
 parser.add_argument('--l0', type=int, default=0,
                     help='Base level')
+parser.add_argument('--map', default='cave_system.png',
+                    help='Base map png')
 parser.add_argument('--no-start', action="store_true",
                     help='Prevent warping to start')
 args = parser.parse_args()
@@ -32,12 +34,12 @@ mc = minecraft.Minecraft.create(address=args.server)
 
 print('Rescuing player...')
 wh = mc.getHeight(0, 0)
-mc.setBlocks(-1, wh, -1, 1, wh, 1, block.GOLD_BLOCK)
-mc.player.setPos(0, wh+2, 0)
+mc.setBlocks(-1, wh-1, -1, 1, wh, 1, block.GOLD_BLOCK)
+mc.player.setPos(0, wh+1, 0)
 
-map.draw_map(mc, 'cave_system.png')
+map.draw_map(mc, args.map)
 
-tmxdata = pytmx.TiledMap(args.map)
+tmxdata = pytmx.TiledMap(args.tiles)
 for layer in tmxdata.visible_layers:
     if layer.name == 'dungeon':
         dungeon = layer
@@ -50,9 +52,12 @@ for t in dungeon:
     else:
         type = os.path.splitext(os.path.basename(t.image[0]))[0]
 
-    if type not in rooms.keys() and type not in ['tee', 'straight', 'intersection', 'corner', 'deadend']:
+    if type not in rooms and type not in ['tee', 'straight', 'intersection', 'corner', 'deadend']:
+        print('Type %s not found in rooms %s' % (type, rooms.keys()))
         continue
+    # TODO fix rotation to work regardless of number (e.g. -90)
     if t.rotation not in [0, 90, 180, 270]:
+        print('Type %s rotation %d not in right angles' % (type, t.rotation))
         continue
 
     # Force origin to the same spot, we are rotating around a centre
@@ -99,6 +104,7 @@ for t in mobs:
 
     print('Spawning "%s" at [%d,%d,%d]' % (type, x, args.l0, z))
 
+    # TODO spawn on the floor, otherwise they don't spawn
     if type == 'start':
         start = (x, y, z)
     elif type == 'zombie':
