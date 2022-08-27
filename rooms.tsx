@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.5" tiledversion="1.7.2" name="rooms" tilewidth="9" tileheight="9" tilecount="23" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
- <tile id="0">
-  <image width="9" height="9" source="rooms_images/sticker_room.png"/>
+ <tile id="23">
+  <image width="9" height="9" source="rooms2_images/miners_cave.png"/>
  </tile>
- <tile id="1">
-  <image width="9" height="9" source="rooms_images/factory.png"/>
+ <tile id="24">
+  <image width="9" height="9" source="rooms2_images/sticker_room.png"/>
  </tile>
- <tile id="2">
-  <image width="9" height="9" source="rooms_images/castle_dungeon.png"/>
+ <tile id="25">
+  <image width="9" height="9" source="rooms2_images/factory.png"/>
  </tile>
- <tile id="3">
-  <image width="9" height="9" source="rooms_images/dining.png"/>
+ <tile id="26">
+  <image width="9" height="9" source="rooms2_images/castle_dungeon.png"/>
  </tile>
- <tile id="4">
-  <image width="9" height="9" source="rooms_images/school.png"/>
+ <tile id="27">
+  <image width="9" height="9" source="rooms2_images/dining.png"/>
  </tile>
- <tile id="5">
-  <image width="9" height="9" source="rooms_images/war_room.png"/>
+ <tile id="28">
+  <image width="9" height="9" source="rooms2_images/school.png"/>
  </tile>
- <tile id="6">
-  <image width="9" height="9" source="rooms_images/miners_cave.png"/>
+ <tile id="29">
+  <image width="9" height="9" source="rooms2_images/war_room.png"/>
  </tile>
- <tile id="7">
-  <image width="9" height="9" source="rooms_images/pokemon_room.png"/>
+ <tile id="30">
+  <image width="9" height="9" source="rooms2_images/pokemon_room.png"/>
  </tile>
- <tile id="8">
-  <image width="9" height="9" source="rooms_images/dice_room.png"/>
+ <tile id="31">
+  <image width="9" height="9" source="rooms2_images/dice_room.png"/>
  </tile>
- <tile id="9">
-  <image width="9" height="9" source="rooms_images/spider_room.png"/>
+ <tile id="32">
+  <image width="9" height="9" source="rooms2_images/spider_room.png"/>
  </tile>
- <tile id="10">
-  <image width="9" height="9" source="rooms_images/library.png"/>
+ <tile id="33">
+  <image width="9" height="9" source="rooms2_images/library.png"/>
  </tile>
- <tile id="11">
-  <image width="9" height="9" source="rooms_images/lazerforce.png"/>
+ <tile id="34">
+  <image width="9" height="9" source="rooms2_images/lazerforce.png"/>
  </tile>
- <tile id="12">
-  <image width="9" height="9" source="rooms_images/castle.png"/>
+ <tile id="35">
+  <image width="9" height="9" source="rooms2_images/castle.png"/>
  </tile>
- <tile id="13">
-  <image width="9" height="9" source="rooms_images/swimming_pool.png"/>
+ <tile id="36">
+  <image width="9" height="9" source="rooms2_images/swimming_pool.png"/>
  </tile>
- <tile id="14">
-  <image width="9" height="9" source="rooms_images/bathroom.png"/>
+ <tile id="37">
+  <image width="9" height="9" source="rooms2_images/bathroom.png"/>
  </tile>
- <tile id="15">
-  <image width="9" height="9" source="rooms_images/train_station.png"/>
+ <tile id="38">
+  <image width="9" height="9" source="rooms2_images/train_station.png"/>
  </tile>
- <tile id="16">
-  <image width="9" height="9" source="rooms_images/bank.png"/>
+ <tile id="39">
+  <image width="9" height="9" source="rooms2_images/bank.png"/>
  </tile>
- <tile id="17">
-  <image width="9" height="9" source="rooms_images/clothes_shop.png"/>
+ <tile id="40">
+  <image width="9" height="9" source="rooms2_images/clothes_shop.png"/>
  </tile>
- <tile id="18">
-  <image width="9" height="9" source="rooms_images/deadend.png"/>
+ <tile id="41">
+  <image width="9" height="9" source="rooms2_images/deadend.png"/>
  </tile>
- <tile id="19">
-  <image width="9" height="9" source="rooms_images/corner.png"/>
+ <tile id="42">
+  <image width="9" height="9" source="rooms2_images/corner.png"/>
  </tile>
- <tile id="20">
-  <image width="9" height="9" source="rooms_images/straight.png"/>
+ <tile id="43">
+  <image width="9" height="9" source="rooms2_images/straight.png"/>
  </tile>
- <tile id="21">
-  <image width="9" height="9" source="rooms_images/tee.png"/>
+ <tile id="44">
+  <image width="9" height="9" source="rooms2_images/tee.png"/>
  </tile>
- <tile id="22">
-  <image width="9" height="9" source="rooms_images/intersection.png"/>
+ <tile id="45">
+  <image width="9" height="9" source="rooms2_images/intersection.png"/>
  </tile>
 </tileset>

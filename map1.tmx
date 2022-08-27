@@ -1,70 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="4" nextobjectid="95">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="5" nextobjectid="102">
  <tileset firstgid="1" source="rooms.tsx"/>
- <tileset firstgid="24" source="entities.tsx"/>
- <objectgroup id="2" name="dungeon" locked="1" opacity="0.61">
-  <object id="1" gid="1" x="9" y="9" width="9" height="9"/>
-  <object id="6" gid="3" x="45" y="0" width="9" height="9" rotation="180"/>
-  <object id="7" gid="22" x="36" y="9" width="9" height="9" rotation="90"/>
-  <object id="11" gid="22" x="9" y="9" width="9" height="9" rotation="90"/>
-  <object id="18" gid="21" x="0" y="27" width="9" height="9"/>
-  <object id="19" gid="21" x="0" y="36" width="9" height="9"/>
-  <object id="20" gid="20" x="0" y="36" width="9" height="9" rotation="90"/>
-  <object id="21" gid="13" x="9" y="45" width="9" height="9"/>
-  <object id="22" gid="23" x="27" y="27" width="9" height="9"/>
-  <object id="23" gid="22" x="36" y="18" width="9" height="9" rotation="270"/>
-  <object id="24" gid="18" x="18" y="18" width="9" height="9" rotation="90"/>
-  <object id="26" gid="16" x="36" y="27" width="9" height="9"/>
-  <object id="29" gid="20" x="27" y="36" width="9" height="9" rotation="90"/>
-  <object id="32" gid="20" x="45" y="27" width="9" height="9" rotation="180"/>
-  <object id="33" gid="11" x="45" y="27" width="9" height="9" rotation="90"/>
-  <object id="34" gid="12" x="54" y="18" width="9" height="9"/>
-  <object id="35" gid="21" x="45" y="9" width="9" height="9" rotation="90"/>
-  <object id="36" gid="15" x="0" y="0" width="9" height="9" rotation="90"/>
-  <object id="37" gid="22" x="9" y="9" width="9" height="9" rotation="180"/>
-  <object id="38" gid="22" x="27" y="36" width="9" height="9"/>
-  <object id="39" gid="20" x="27" y="27" width="9" height="9" rotation="180"/>
-  <object id="41" gid="21" x="18" y="45" width="9" height="9"/>
-  <object id="43" gid="21" x="18" y="63" width="9" height="9"/>
-  <object id="44" gid="9" x="18" y="72" width="9" height="9"/>
-  <object id="46" gid="19" x="27" y="45" width="9" height="9" rotation="180"/>
-  <object id="47" gid="1" x="18" y="9" width="9" height="9"/>
-  <object id="48" gid="22" x="18" y="9" width="9" height="9" rotation="90"/>
-  <object id="49" gid="17" x="27" y="9" width="9" height="9"/>
-  <object id="50" gid="1" x="99" y="27" width="9" height="9" rotation="90"/>
-  <object id="51" gid="3" x="108" y="63" width="9" height="9" rotation="270"/>
-  <object id="52" gid="22" x="99" y="54" width="9" height="9" rotation="180"/>
-  <object id="53" gid="22" x="99" y="27" width="9" height="9" rotation="180"/>
-  <object id="54" gid="21" x="81" y="18" width="9" height="9" rotation="90"/>
-  <object id="55" gid="21" x="72" y="18" width="9" height="9" rotation="90"/>
-  <object id="56" gid="20" x="72" y="18" width="9" height="9" rotation="180"/>
-  <object id="57" gid="13" x="63" y="27" width="9" height="9" rotation="90"/>
-  <object id="58" gid="23" x="81" y="45" width="9" height="9" rotation="90"/>
-  <object id="59" gid="22" x="90" y="54" width="9" height="9"/>
-  <object id="60" gid="18" x="90" y="36" width="9" height="9" rotation="180"/>
-  <object id="61" gid="16" x="81" y="54" width="9" height="9" rotation="90"/>
-  <object id="62" gid="20" x="72" y="45" width="9" height="9" rotation="180"/>
-  <object id="63" gid="20" x="63" y="54" width="9" height="9" rotation="90"/>
-  <object id="64" gid="20" x="81" y="63" width="9" height="9" rotation="270"/>
-  <object id="65" gid="11" x="81" y="63" width="9" height="9" rotation="180"/>
-  <object id="66" gid="12" x="90" y="72" width="9" height="9" rotation="90"/>
-  <object id="67" gid="21" x="99" y="63" width="9" height="9" rotation="180"/>
-  <object id="68" gid="15" x="108" y="18" width="9" height="9" rotation="180"/>
-  <object id="69" gid="22" x="99" y="27" width="9" height="9" rotation="270"/>
-  <object id="70" gid="22" x="72" y="45" width="9" height="9" rotation="90"/>
-  <object id="71" gid="20" x="81" y="45" width="9" height="9" rotation="270"/>
-  <object id="72" gid="21" x="63" y="36" width="9" height="9" rotation="90"/>
-  <object id="73" gid="21" x="45" y="36" width="9" height="9" rotation="90"/>
-  <object id="75" gid="19" x="63" y="45" width="9" height="9" rotation="270"/>
-  <object id="76" gid="1" x="99" y="36" width="9" height="9" rotation="90"/>
-  <object id="77" gid="22" x="99" y="36" width="9" height="9" rotation="180"/>
-  <object id="78" gid="17" x="99" y="45" width="9" height="9" rotation="90"/>
-  <object id="79" gid="22" x="36" y="36" width="9" height="9" rotation="90"/>
+ <tileset firstgid="47" source="entities.tsx"/>
+ <imagelayer id="4" name="Image Layer 1" opacity="0.33">
+  <image source="cave_system.png" width="128" height="128"/>
+ </imagelayer>
+ <objectgroup id="2" name="dungeon" opacity="0.61">
+  <object id="97" gid="25" x="19" y="74" width="9" height="9"/>
+  <object id="98" gid="30" x="7" y="23" width="9" height="9" rotation="90"/>
+  <object id="99" gid="38" x="29" y="7" width="9" height="9" rotation="180"/>
  </objectgroup>
  <objectgroup id="3" name="mobs">
-  <object id="87" gid="28" x="3" y="40" width="1" height="1"/>
-  <object id="89" gid="31" x="56" y="41" width="1" height="1"/>
-  <object id="93" gid="32" x="49" y="15" width="1" height="1"/>
-  <object id="94" gid="30" x="23" y="23" width="1" height="1"/>
+  <object id="100" gid="56" x="24" y="12" width="1" height="1"/>
+  <object id="101" gid="51" x="33" y="27" width="1" height="1"/>
  </objectgroup>
 </map>

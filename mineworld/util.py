@@ -29,6 +29,8 @@ SIGN_HUNG_X0 = 5
 
 TILE_SIZE = 9
 
+MAP_STONE = (0, 0, 0, 255)
+
 ATTACHABLES = [
     block.TORCH[0],
     block.REDSTONE_TORCH_INACTIVE[0],

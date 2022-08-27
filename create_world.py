@@ -2,19 +2,25 @@ import pytmx
 import mineworld.util as util
 import mineworld.room as room
 import mineworld.corridor as corridor
+import mineworld.map as map
 import os
 import glob
 import mcpi.minecraft as minecraft
 import mcpi.entity as entity
 import argparse
+import mcpi.block as block
 
 parser = argparse.ArgumentParser(description='Mineworld creator')
 parser.add_argument('--roomdir', default="rooms",
                     help='Specify directory containing pickled rooms')
 parser.add_argument('--server', default='localhost',
                     help='Minecraft running RaspberryJamMod')
-parser.add_argument('--map', default='m.tmx',
+parser.add_argument('--map', default='map1.tmx',
                     help='Tiled map using room files specified by --roomdir')
+parser.add_argument('--l0', type=int, default=0,
+                    help='Base level')
+parser.add_argument('--no-start', action="store_true",
+                    help='Prevent warping to start')
 args = parser.parse_args()
 
 rooms = {}
@@ -23,7 +29,13 @@ for rf in glob.glob("%s/*.pickle" % args.roomdir):
     rooms[r.name] = r
 
 mc = minecraft.Minecraft.create(address=args.server)
-mc.player.getPos()
+
+print('Rescuing player...')
+wh = mc.getHeight(0, 0)
+mc.setBlocks(-1, wh, -1, 1, wh, 1, block.GOLD_BLOCK)
+mc.player.setPos(0, wh+2, 0)
+
+map.draw_map(mc, 'cave_system.png')
 
 tmxdata = pytmx.TiledMap(args.map)
 for layer in tmxdata.visible_layers:
@@ -44,35 +56,37 @@ for t in dungeon:
         continue
 
     # Force origin to the same spot, we are rotating around a centre
-    x = int(t.x/util.TILE_SIZE)
-    z = int(t.y/util.TILE_SIZE)
+    x = int(t.x)
+    z = int(t.y)
     if t.rotation == 90 or t.rotation == 180:
-        z = z+1
+        z = z+util.TILE_SIZE
     if t.rotation == 180 or t.rotation == 270:
-        x = x-1
+        x = x-util.TILE_SIZE
 
-    print('Drawing "%s" at [%d,%d]°%d' % (type, x, z, t.rotation))
+    print('Drawing "%s" at [%d,%d,%d]°%d' %
+          (type, x, args.l0, z, t.rotation))
 
     if type in rooms:
-        rooms[type].draw(mc, *util.to_world(x, 0, z), rot=t.rotation)
+        rooms[type].draw(mc, x, args.l0-2, z, rot=t.rotation)
     elif type == 'tee':
-        corridor.draw_corridor(mc, *util.to_world(x, 0, z), rot=t.rotation,
+        corridor.draw_corridor(mc, x, args.l0-2, z, rot=t.rotation,
                                holes=[util.NORTH, util.WEST, util.SOUTH])
     elif type == 'straight':
-        corridor.draw_corridor(mc, *util.to_world(x, 0, z),
+        corridor.draw_corridor(mc, x, args.l0-2, z,
                                rot=t.rotation, holes=[util.NORTH, util.SOUTH])
     elif type == 'intersection':
-        corridor.draw_corridor(mc, *util.to_world(x, 0, z), rot=t.rotation,
+        corridor.draw_corridor(mc, x, args.l0-2, z, rot=t.rotation,
                                holes=[util.NORTH, util.EAST, util.SOUTH, util.WEST])
     elif type == 'corner':
-        corridor.draw_corridor(mc, *util.to_world(x, 0, z),
+        corridor.draw_corridor(mc, x, args.l0-2, z,
                                rot=t.rotation, holes=[util.NORTH, util.WEST])
     elif type == 'deadend':
-        corridor.draw_corridor(mc, *util.to_world(x, 0, z),
+        corridor.draw_corridor(mc, x, args.l0-2, z,
                                rot=t.rotation, holes=[util.NORTH])
     else:
         print('* Unknown room or corridor')
 
+start = None
 for t in mobs:
     if t.type != None:
         type = t.type
@@ -82,18 +96,24 @@ for t in mobs:
     x = int(t.x)
     z = int(t.y)
 
-    print('Spawning "%s" at [%d,%d]' % (type, x, z))
+    print('Spawning "%s" at [%d,%d,%d]' % (type, x, args.l0, z))
 
-    if type == 'zombie':
-        mc.spawnEntity(entity.ZOMBIE, x, 1, z)
+    if type == 'start':
+        start = (x, args.l0, z)
+    elif type == 'zombie':
+        mc.spawnEntity(entity.ZOMBIE, x, args.l0, z)
     elif type == 'skeleton':
-        mc.spawnEntity(entity.SKELETON, x, 1, z,
+        mc.spawnEntity(entity.SKELETON, x, args.l0, z,
                        '{HandItems:[{id:beetroot,Count:1},{id:bone,Count:1}]}')
     elif type == 'enderman':
-        mc.spawnEntity(entity.ENDERMAN, x, 1, z)
+        mc.spawnEntity(entity.ENDERMAN, x, args.l0, z)
     elif type == 'creeper':
-        mc.spawnEntity(entity.CREEPER, x, 1, z)
+        mc.spawnEntity(entity.CREEPER, x, args.l0, z)
     elif type == 'spider':
-        mc.spawnEntity(entity.SPIDER, x, 1, z)
+        mc.spawnEntity(entity.SPIDER, x, args.l0, z)
     else:
         print('* Unknown mob')
+
+# Begin!
+if start != None and not args.no_start:
+    mc.player.setPos(start)
