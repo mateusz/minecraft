@@ -93,24 +93,25 @@ for t in mobs:
     else:
         type = os.path.splitext(os.path.basename(t.image[0]))[0]
 
-    x = int(t.x)
-    z = int(t.y)
+    x = int(t.x)+0.5
+    y = args.l0-1
+    z = int(t.y)+0.5
 
     print('Spawning "%s" at [%d,%d,%d]' % (type, x, args.l0, z))
 
     if type == 'start':
-        start = (x, args.l0, z)
+        start = (x, y, z)
     elif type == 'zombie':
-        mc.spawnEntity(entity.ZOMBIE, x, args.l0, z)
+        mc.spawnEntity(entity.ZOMBIE, x, y, z)
     elif type == 'skeleton':
-        mc.spawnEntity(entity.SKELETON, x, args.l0, z,
+        mc.spawnEntity(entity.SKELETON, x, y, z,
                        '{HandItems:[{id:beetroot,Count:1},{id:bone,Count:1}]}')
     elif type == 'enderman':
-        mc.spawnEntity(entity.ENDERMAN, x, args.l0, z)
+        mc.spawnEntity(entity.ENDERMAN, x, y, z)
     elif type == 'creeper':
-        mc.spawnEntity(entity.CREEPER, x, args.l0, z)
+        mc.spawnEntity(entity.CREEPER, x, y, z)
     elif type == 'spider':
-        mc.spawnEntity(entity.SPIDER, x, args.l0, z)
+        mc.spawnEntity(entity.SPIDER, x, y, z)
     else:
         print('* Unknown mob')
 
