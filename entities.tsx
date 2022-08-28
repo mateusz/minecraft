@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.2" name="entities" tilewidth="1" tileheight="1" tilecount="6" columns="0">
+<tileset version="1.5" tiledversion="1.7.2" name="entities" tilewidth="1" tileheight="1" tilecount="7" columns="0">
  <tile id="4">
   <image width="1" height="1" source="entities/zombie.png"/>
  </tile>
@@ -17,5 +17,8 @@
  </tile>
  <tile id="9">
   <image width="1" height="1" source="entities/start.png"/>
+ </tile>
+ <tile id="10">
+  <image width="1" height="1" source="entities/minecart.png"/>
  </tile>
 </tileset>

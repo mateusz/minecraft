@@ -14,15 +14,15 @@ def draw_map(mc, l0=10, hmax=10, base_gray=100, image='cave_system.png'):
     im = Image.open(image)
     pix = im.load()
 
-    mc.setBlocks(0, -256, 0,
-                 im.size[0], l0+(hmax-1)+1, im.size[1], block.LAVA)
-    util.msg(mc, 'Standby, burning entities to death...')
-    time.sleep(15)
-
     # mc.setBlocks(0, -256, 0,
-    #             im.size[0], l0+(hmax-1)+1, im.size[1], block.AIR)
-    #util.msg(mc, 'Standby, dropping entities into void...')
+    #             im.size[0], l0+(hmax-1)+1, im.size[1], block.STONE)
+    # util.msg(mc, 'Standby, burning entities to death...')
     # time.sleep(15)
+
+    mc.setBlocks(0, -256, 0,
+                 im.size[0], l0+(hmax-1)+1, im.size[1], block.AIR)
+    util.msg(mc, 'Standby, dropping entities into void...')
+    time.sleep(5)
 
     util.msg(mc, 'Drilling caves...')
     mc.setBlocks(0, -256, 0,

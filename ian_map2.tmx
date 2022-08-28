@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="9" tileheight="9" infinite="0" nextlayerid="5" nextobjectid="182">
+ <tileset firstgid="1" source="rooms.tsx"/>
+ <tileset firstgid="49" source="entities.tsx"/>
+ <imagelayer id="4" name="Image Layer 1" opacity="0.33">
+  <image source="ian_cave2.png" width="128" height="128"/>
+ </imagelayer>
+ <objectgroup id="2" name="dungeon" opacity="0.61">
+  <object id="131" gid="38" x="77" y="37" width="9" height="9" rotation="180"/>
+  <object id="132" gid="36" x="53" y="126" width="9" height="9"/>
+  <object id="135" gid="43" x="93" y="6" width="9" height="9" rotation="180"/>
+  <object id="136" gid="39" x="84" y="24" width="9" height="9"/>
+  <object id="137" gid="48" x="75" y="24" width="9" height="9"/>
+  <object id="138" gid="48" x="66" y="24" width="9" height="9"/>
+  <object id="139" gid="48" x="57" y="24" width="9" height="9"/>
+  <object id="140" gid="47" x="57" y="15" width="9" height="9" rotation="180"/>
+  <object id="141" gid="47" x="48" y="15" width="9" height="9"/>
+  <object id="142" gid="39" x="48" y="6" width="9" height="9" rotation="-180"/>
+  <object id="143" gid="43" x="38" y="24" width="9" height="9"/>
+  <object id="144" gid="39" x="25" y="96" width="9" height="9"/>
+  <object id="145" gid="47" x="34" y="96" width="9" height="9"/>
+  <object id="146" gid="47" x="43" y="96" width="9" height="9" rotation="180"/>
+  <object id="147" gid="48" x="43" y="105" width="9" height="9"/>
+  <object id="148" gid="39" x="61" y="96" width="9" height="9" rotation="180"/>
+  <object id="149" gid="41" x="43" y="55" width="9" height="9" rotation="-90"/>
+  <object id="150" gid="25" x="102" y="109" width="9" height="9"/>
+  <object id="151" gid="24" x="121" y="20" width="9" height="9" rotation="-90"/>
+  <object id="152" gid="29" x="62" y="124" width="9" height="9"/>
+ </objectgroup>
+ <objectgroup id="3" name="mobs">
+  <object id="177" gid="59" x="89" y="18" width="1" height="1"/>
+  <object id="178" gid="59" x="89" y="20" width="1" height="1"/>
+  <object id="179" gid="59" x="89" y="22" width="1" height="1"/>
+  <object id="181" gid="58" x="89" y="13" width="1" height="1"/>
+ </objectgroup>
+</map>

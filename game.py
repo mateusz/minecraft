@@ -10,6 +10,7 @@ import mcpi.entity as entity
 import argparse
 import mcpi.block as block
 import numpy as np
+import math
 import time
 
 parser = argparse.ArgumentParser(description='Mineworld creator')
@@ -62,13 +63,15 @@ for t in dungeon:
         print('Type %s not found in rooms %s' % (type, rooms.keys()))
         continue
     # TODO fix rotation to work regardless of number (e.g. -90)
-    if t.rotation not in [-90, 0, 90, 180, 270]:
+    if t.rotation not in [-180, -90, 0, 90, 180, 270]:
         print('Type %s rotation %d not in right angles' % (type, t.rotation))
         continue
 
     # Force origin to the same spot, we are rotating around a centre
     x = int(t.x)
     z = int(t.y)
+    if t.rotation == -180:
+        t.rotation = 180
     if t.rotation == -90:
         t.rotation = 270
     if t.rotation == 90 or t.rotation == 180:
@@ -99,10 +102,8 @@ for t in dungeon:
     else:
         print('* Unknown room or corridor')
 
-# TODO If player is away from the chunk, the entities will not generate.
-# Need to monitor the position and load entities as we go
-util.msg(mc, 'Plopping entities...')
 start = None
+entities = []
 for t in mobs:
     if t.type != None:
         type = t.type
@@ -121,30 +122,54 @@ for t in mobs:
             break
         y = scan_y
 
-    x = float(x)
+    x = float(x)+0.5
     y = float(y)
-    z = float(z)
+    z = float(z)+0.5
 
-    print('Spawning "%s" at [%.1f,%.1f,%.1f]' % (type, x, y, z))
-    mc.setBlock(x, y-1, z, block.STAINED_GLASS_GREEN)
+    print('Loading "%s" at [%.1f,%.1f,%.1f]' % (type, x, y, z))
     mc.setBlocks(x, y, z, x, y+2, z, block.AIR)
 
     if type == 'start':
         start = (x, y, z)
     elif type == 'zombie':
-        mc.spawnEntity(entity.ZOMBIE, x, y, z)
+        entities.append((entity.ZOMBIE, x, y, z))
     elif type == 'skeleton':
-        mc.spawnEntity(entity.SKELETON, x, y, z,
-                       '{HandItems:[{id:beetroot,Count:1},{id:bone,Count:1}]}')
+        entities.append((entity.SKELETON, x, y, z,
+                        '{HandItems:[{id:beetroot,Count:1},{id:bone,Count:1}]}'))
     elif type == 'enderman':
-        mc.spawnEntity(entity.ENDERMAN, x, y, z)
+        entities.append((entity.ENDERMAN, x, y, z))
     elif type == 'creeper':
-        mc.spawnEntity(entity.CREEPER, x, y, z)
+        entities.append((entity.CREEPER, x, y, z))
     elif type == 'spider':
-        mc.spawnEntity(entity.SPIDER, x, y, z)
+        entities.append((entity.SPIDER, x, y, z))
+    elif type == 'minecart':
+        entities.append((entity.MINECARTRIDEABLE, x, y-1, z))
     else:
-        print('* Unknown mob')
+        print('* Unknown entity')
 
 # Begin!
 if start != None and not args.no_teleport:
     mc.player.setPos(start)
+
+util.msg(mc, 'READY!')
+
+
+# If player is away from the chunk, the entities will not generate.
+# Monitor the position and load entities as we go
+while True:
+    time.sleep(1)
+    pos = mc.player.getPos()
+    removals = []
+    for ie in np.arange(0, len(entities), 1):
+        e = entities[ie]
+        if util.dist(pos.x, 0, pos.z, e[1], 0, e[3]) < 32.0:
+            print('Spawning "%s" at [%.1f,%.1f,%.1f]' %
+                  (e[0], e[1], e[2], e[3]))
+            mc.spawnEntity(*e)
+            removals.insert(0, ie)
+
+    for r in removals:
+        entities.pop(r)
+
+    if pos.y > 200:
+        mc.player.setPos(start)

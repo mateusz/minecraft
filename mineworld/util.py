@@ -1,5 +1,5 @@
 import mcpi.block as block
-import time
+import math
 
 NORTH = 'z0'
 EAST = 'x1'
@@ -80,6 +80,10 @@ ROT = [
 def msg(mc, msg):
     mc.postToChat(msg)
     print(msg)
+
+
+def dist(x1, y1, z1, x2, y2, z2):
+    return math.sqrt(math.pow(x1-x2, 2)+math.pow(y1-y2, 2)+math.pow(z1-z2, 2))
 
 
 def to_tile(x, y, z):
