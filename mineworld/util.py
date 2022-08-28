@@ -107,6 +107,7 @@ def to_torch_dir_rot(dir, deg):
         TORCH_DIR_Z1: TORCH_DIR_X0,
         TORCH_DIR_X0: TORCH_DIR_Z0,
         TORCH_DIR_Z0: TORCH_DIR_X1,
+        TORCH_DIR_UP: TORCH_DIR_UP,
     }
     if deg == 0:
         return dir

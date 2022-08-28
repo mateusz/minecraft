@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.7.2" name="rooms" tilewidth="9" tileheight="9" tilecount="23" columns="0">
+<tileset version="1.5" tiledversion="1.7.2" name="rooms" tilewidth="9" tileheight="9" tilecount="25" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="23">
   <image width="9" height="9" source="rooms2_images/miners_cave.png"/>
@@ -69,5 +69,11 @@
  </tile>
  <tile id="45">
   <image width="9" height="9" source="rooms2_images/intersection.png"/>
+ </tile>
+ <tile id="46">
+  <image width="9" height="9" source="rooms2_images/train_corner.png"/>
+ </tile>
+ <tile id="47">
+  <image width="9" height="9" source="rooms2_images/train_tunnel.png"/>
  </tile>
 </tileset>
