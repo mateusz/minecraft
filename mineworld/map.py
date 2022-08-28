@@ -1,3 +1,4 @@
+from tkinter import W
 from PIL import Image
 import numpy as np
 import mcpi.minecraft as minecraft
@@ -9,21 +10,23 @@ from . import util
 import time
 
 
-def draw_map(mc, image='cave_system.png'):
+def draw_map(mc, l0=10, hmax=10, base_gray=100, image='cave_system.png'):
     im = Image.open(image)
     pix = im.load()
 
-    hmax = 10
-    l0 = 10
-    base_gray = 100
     mc.setBlocks(0, -256, 0,
-                 im.size[0], l0+(hmax-1)+1, im.size[1], block.AIR)
-    print('Standby, dropping entities into void...')
-    time.sleep(5)
-    print('Rebuilding floor...')
+                 im.size[0], l0+(hmax-1)+1, im.size[1], block.LAVA)
+    util.msg(mc, 'Standby, burning entities to death...')
+    time.sleep(15)
+
+    # mc.setBlocks(0, -256, 0,
+    #             im.size[0], l0+(hmax-1)+1, im.size[1], block.AIR)
+    #util.msg(mc, 'Standby, dropping entities into void...')
+    # time.sleep(15)
+
+    util.msg(mc, 'Drilling caves...')
     mc.setBlocks(0, -256, 0,
                  im.size[0], l0+(hmax-1)+1, im.size[1], block.STONE)
-    time.sleep(5)
 
     # Also down-side!
     for z in np.arange(0, im.size[1]):

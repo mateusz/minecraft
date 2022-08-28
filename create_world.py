@@ -9,6 +9,8 @@ import mcpi.minecraft as minecraft
 import mcpi.entity as entity
 import argparse
 import mcpi.block as block
+import numpy as np
+import time
 
 parser = argparse.ArgumentParser(description='Mineworld creator')
 parser.add_argument('--roomdir', default="rooms",
@@ -17,12 +19,14 @@ parser.add_argument('--server', default='localhost',
                     help='Minecraft running RaspberryJamMod')
 parser.add_argument('--tiles', default='map1.tmx',
                     help='Tiled map using room files specified by --roomdir')
-parser.add_argument('--l0', type=int, default=0,
+parser.add_argument('--l0', type=int, default=10,
                     help='Base level')
+parser.add_argument('--hmax', type=int, default=10,
+                    help='Height max (1/3rd of it downwards, 1/1 of it upwards)')
 parser.add_argument('--map', default='cave_system.png',
                     help='Base map png')
-parser.add_argument('--no-start', action="store_true",
-                    help='Prevent warping to start')
+parser.add_argument('--no-teleport', action="store_true",
+                    help='Prevent rescuing and warping the player to start')
 args = parser.parse_args()
 
 rooms = {}
@@ -32,12 +36,13 @@ for rf in glob.glob("%s/*.pickle" % args.roomdir):
 
 mc = minecraft.Minecraft.create(address=args.server)
 
-print('Rescuing player...')
-wh = mc.getHeight(0, 0)
-mc.setBlocks(-1, wh-1, -1, 1, wh, 1, block.GOLD_BLOCK)
-mc.player.setPos(0, wh+1, 0)
+if not args.no_teleport:
+    util.msg(mc, 'Rescuing player...')
+    wh = mc.getHeight(0, 0)
+    mc.setBlocks(-1, wh-1, -1, 1, wh-1, 1, block.GOLD_BLOCK)
+    mc.player.setPos(0, wh, 0)
 
-map.draw_map(mc, args.map)
+map.draw_map(mc, l0=args.l0, hmax=args.hmax, image=args.map)
 
 tmxdata = pytmx.TiledMap(args.tiles)
 for layer in tmxdata.visible_layers:
@@ -46,6 +51,7 @@ for layer in tmxdata.visible_layers:
     if layer.name == 'mobs':
         mobs = layer
 
+util.msg(mc, 'Drawing dungeon...')
 for t in dungeon:
     if t.type != None:
         type = t.type
@@ -56,13 +62,15 @@ for t in dungeon:
         print('Type %s not found in rooms %s' % (type, rooms.keys()))
         continue
     # TODO fix rotation to work regardless of number (e.g. -90)
-    if t.rotation not in [0, 90, 180, 270]:
+    if t.rotation not in [-90, 0, 90, 180, 270]:
         print('Type %s rotation %d not in right angles' % (type, t.rotation))
         continue
 
     # Force origin to the same spot, we are rotating around a centre
     x = int(t.x)
     z = int(t.y)
+    if t.rotation == -90:
+        t.rotation = 270
     if t.rotation == 90 or t.rotation == 180:
         z = z+util.TILE_SIZE
     if t.rotation == 180 or t.rotation == 270:
@@ -91,6 +99,9 @@ for t in dungeon:
     else:
         print('* Unknown room or corridor')
 
+# TODO If player is away from the chunk, the entities will not generate.
+# Need to monitor the position and load entities as we go
+util.msg(mc, 'Plopping entities...')
 start = None
 for t in mobs:
     if t.type != None:
@@ -98,13 +109,26 @@ for t in mobs:
     else:
         type = os.path.splitext(os.path.basename(t.image[0]))[0]
 
-    x = int(t.x)+0.5
-    y = args.l0-1
-    z = int(t.y)+0.5
+    x = t.x
+    y = args.l0
+    z = t.y
 
-    print('Spawning "%s" at [%d,%d,%d]' % (type, x, args.l0, z))
+    # Spawn on the floor, otherwise they don't spawn
+    y = args.l0+1
+    for scan_y in np.arange(args.l0, 0, -1):
+        b = mc.getBlock(x, float(scan_y), z)
+        if b != block.AIR[0]:
+            break
+        y = scan_y
 
-    # TODO spawn on the floor, otherwise they don't spawn
+    x = float(x)
+    y = float(y)
+    z = float(z)
+
+    print('Spawning "%s" at [%.1f,%.1f,%.1f]' % (type, x, y, z))
+    mc.setBlock(x, y-1, z, block.STAINED_GLASS_GREEN)
+    mc.setBlocks(x, y, z, x, y+2, z, block.AIR)
+
     if type == 'start':
         start = (x, y, z)
     elif type == 'zombie':
@@ -122,5 +146,5 @@ for t in mobs:
         print('* Unknown mob')
 
 # Begin!
-if start != None and not args.no_start:
+if start != None and not args.no_teleport:
     mc.player.setPos(start)

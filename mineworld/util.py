@@ -77,6 +77,11 @@ ROT = [
 ]
 
 
+def msg(mc, msg):
+    mc.postToChat(msg)
+    print(msg)
+
+
 def to_tile(x, y, z):
     return [int(x/TILE_SIZE), int(y/TILE_SIZE), int(z/TILE_SIZE)]
 
